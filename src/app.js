@@ -4,8 +4,8 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const {NODE_ENV} = require('./config')
-const booksRouter = require('./books/books-router')
-const notesRouter = require('./notes/notes-router')
+const plantsRouter = require('./plants/plants-router')
+const ordersRouter = require('./orders/orders-router')
 const authRouter = require('./auth/auth-router')
 const usersRouter = require('./users/users-router')
 
@@ -19,8 +19,8 @@ app.use(cors())
 
 app.use(helmet())
 
-app.use('/api/garden', booksRouter)
-app.use('/api/orders', notesRouter)
+app.use('/api/garden', plantsRouter)
+app.use('/api/orders', ordersRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
 
