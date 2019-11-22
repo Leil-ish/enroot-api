@@ -4,7 +4,8 @@ CREATE TABLE enroot_orders (
         REFERENCES enroot_plants(id) ON DELETE CASCADE NOT NULL,
     user_id INTEGER NOT NULL
         REFERENCES enroot_users(id) ON DELETE CASCADE NOT NULL,
-    title TEXT NOT NULL,
     modified TIMESTAMP DEFAULT now() NOT NULL,
-    content TEXT NOT NULL
+    maintenance_needed TEXT NOT NULL,
+    frequency TEXT NOT NULL,
+    details TEXT
 );
