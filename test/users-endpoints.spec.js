@@ -6,7 +6,7 @@ const helpers = require('./test-helpers')
 describe('Users Endpoints', function() {
   let db
 
-  const { testUsers } = helpers.makeArticlesFixtures()
+  const { testUsers } = helpers.makePlantsFixtures()
   const testUser = testUsers[0]
 
   before('make knex instance', () => {
@@ -59,6 +59,7 @@ describe('Users Endpoints', function() {
           username: 'test username',
           password: '1234567',
           first_name: 'test first_name',
+          last_name: 'test last_name',
         }
         return supertest(app)
           .post('/api/users')
@@ -71,6 +72,7 @@ describe('Users Endpoints', function() {
           username: 'test username',
           password: '*'.repeat(73),
           first_name: 'test first_name',
+          last_name: 'test last_name',
         }
         return supertest(app)
           .post('/api/users')
@@ -83,6 +85,7 @@ describe('Users Endpoints', function() {
           username: 'test username',
           password: ' 1Aa!2Bb@',
           first_name: 'test first_name',
+          last_name: 'test last_name',
         }
         return supertest(app)
           .post('/api/users')
@@ -95,6 +98,7 @@ describe('Users Endpoints', function() {
           username: 'test username',
           password: '1Aa!2Bb@ ',
           first_name: 'test first_name',
+          last_name: 'test last_name',
         }
         return supertest(app)
           .post('/api/users')
@@ -107,6 +111,7 @@ describe('Users Endpoints', function() {
           username: 'test username',
           password: '11AAaabb',
           first_name: 'test first_name',
+          last_name: 'test last_name',
         }
         return supertest(app)
           .post('/api/users')
@@ -119,6 +124,7 @@ describe('Users Endpoints', function() {
           username: testUser.username,
           password: '11AAaa!!',
           first_name: 'test first_name',
+          last_name: 'test last_name',
         }
         return supertest(app)
           .post('/api/users')
@@ -133,6 +139,7 @@ describe('Users Endpoints', function() {
           username: 'test username',
           password: '11AAaa!!',
           first_name: 'test first_name',
+          last_name: 'test last_name',
         }
         return supertest(app)
           .post('/api/users')
@@ -142,7 +149,7 @@ describe('Users Endpoints', function() {
             expect(res.body).to.have.property('id')
             expect(res.body.username).to.eql(newUser.username)
             expect(res.body.first_name).to.eql(newUser.first_name)
-            expect(res.body.last_name).to.eql('')
+            expect(res.body.last_name).to.eql(newUser.last_name)
             expect(res.body).to.not.have.property('password')
             expect(res.headers.location).to.eql(`/api/users/${res.body.id}`)
             const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
@@ -158,7 +165,7 @@ describe('Users Endpoints', function() {
               .then(row => {
                 expect(row.username).to.eql(newUser.username)
                 expect(row.first_name).to.eql(newUser.first_name)
-                expect(row.last_name).to.eql(null)
+                expect(row.last_name).to.eql(newUser.last_name)
                 const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
                 const actualDate = new Date(row.date_created).toLocaleString()
                 expect(actualDate).to.eql(expectedDate)
