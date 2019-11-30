@@ -18,11 +18,11 @@ plantsRouter
     const {scientific_name, common_name, lifespan, growth_rate, growth_period, 
         temperature_minimum, shade_tolerance, precipitation_minimum, precipitation_maximum, 
         resprout_ability, family_common_name, duration, drought_tolerance, frost_free_days_minimum, 
-        moisture_use} = req.body
+        moisture_use, user_id, seedling_vigor, flower_color, foliage_color} = req.body
     const newPlant = {scientific_name, common_name, lifespan, growth_rate, growth_period, 
         temperature_minimum, shade_tolerance, precipitation_minimum, precipitation_maximum, 
         resprout_ability, family_common_name, duration, drought_tolerance, frost_free_days_minimum, 
-        moisture_use}
+        moisture_use, user_id, seedling_vigor, flower_color, foliage_color}
 
     for (const [key, value] of Object.entries(newPlant))
       if (value == null)
@@ -146,8 +146,8 @@ plantsRouter
   .all(requireAuth)
   .all(checkPlantExists)
   .patch(requireAuth, jsonBodyParser, (req, res, next) => {
-    const {scientific_name, growth_rate, growth_period, shade_tolerance, precipitation_maximum, precipitation_minimum, family_common_name, drought_tolerance, frost_free_days_minimum, moisture_use} = req.body
-    const plantToUpdate = {scientific_name, growth_rate, growth_period, shade_tolerance, precipitation_maximum, precipitation_minimum, family_common_name, drought_tolerance, frost_free_days_minimum, moisture_use}
+    const {scientific_name, growth_rate, growth_period, shade_tolerance, precipitation_maximum, precipitation_minimum, family_common_name, drought_tolerance, frost_free_days_minimum, moisture_use, user_id, seedling_vigor, flower_color, foliage_color} = req.body
+    const plantToUpdate = {scientific_name, growth_rate, growth_period, shade_tolerance, precipitation_maximum, precipitation_minimum, family_common_name, drought_tolerance, frost_free_days_minimum, moisture_use, user_id, seedling_vigor, flower_color, foliage_color}
 
     const numberOfValues = Object.values(plantToUpdate).filter(Boolean).length
     if (numberOfValues === 0) {

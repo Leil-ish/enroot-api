@@ -21,6 +21,10 @@ const PlantsService = {
         'enroot_plant.drought_tolerance',
         'enroot_plant.frost_free_days_minimum',
         'enroot_plant.moisture_use',
+        'enroot_plant.user_id',
+        'enroot_plant.seedling_vigor',
+        'enroot_plant.flower_color',
+        'enroot_plant.foliage_color',
         )
         .groupBy('enroot_plant.id')
       },
@@ -127,6 +131,10 @@ const PlantsService = {
         drought_tolerance: xss(plant.drought_tolerance),
         frost_free_days_minimum: plant.frost_free_days_minimum,
         moisture_use: xss(plant.moisture_use),
+        user_id: plant.user_id,
+        seedling_vigor: xss(plant.seedling_vigor),
+        flower_color: xss(plant.flower_color),
+        foliage_color: xss(plant.foliage_color),
       }
     },
   

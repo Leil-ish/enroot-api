@@ -11,28 +11,28 @@ VALUES
   ('Leila', 'Anderson', 'leilaanderson', '$2a$12$4YGQ8fc0mlt8AuqfYsXQQudNHem5XkTkkla7HS/ndON8zhVAnNOXy'),
   ('Test', 'User', 'testuser', '$2a$12$NdEBKoQWSW1sf.VFMjsQ1.c8KzU1VgSTezrsb4f498TRoDs8NVuLm');
 
-INSERT INTO enroot_plants (scientific_name, common_name, lifespan, growth_rate, growth_period, temperature_minimum, shade_tolerance, precipitation_minimum, precipitation_maximum, resprout_ability, family_common_name, duration, drought_tolerance, frost_free_days_minimum, moisture_use, user_id)  
+INSERT INTO enroot_plants (scientific_name, common_name, lifespan, growth_rate, growth_period, temperature_minimum, shade_tolerance, precipitation_minimum, precipitation_maximum, resprout_ability, family_common_name, duration, drought_tolerance, frost_free_days_minimum, moisture_use, user_id, seedling_vigor, flower_color, foliage_color)  
 VALUES
-    ('Phyllostegia parviflora (Gaudich.) Benth.', 'Smallflower Phyllostegia', 'pulvinar', 'nunc viverra', 'sed magna', 40, 'ut at', 4, 18, 'quis', 'aliquet ultrices', 'ac', 'tellus', 301, 'nunc', 2),
-    ('Astragalus pardalinus (Rydb.) Barneby', 'Panther Milkvetch', 'adipiscing elit', 'congue', 'vel ipsum', 39, 'ante', 3, 38, 'erat', 'quam', 'nullam', 'ultricies', 79, 'aliquam lacus', 1),
-    ('Draba cinerea M.F. Adams', 'Grayleaf Draba', 'pede posuere', 'proin interdum', 'ante vel', 14, 'porttitor lacus', 1, 11, 'amet', 'nec sem', 'dapibus at', 'ligula', 362, 'tincidunt eget', 2),
-    ('Festuca heterophylla Lam.', 'Variousleaf Fescue', 'neque', 'volutpat', 'vel lectus', 36, 'sagittis', 5, 29, 'nibh', 'morbi vel', 'in', 'ligula', 29, 'sit', 2),
-    ('Bacidia scopulicola (Nyl.) A.L. Sm.', 'Dotted Lichen', 'vel enim', 'tempor', 'at', 23, 'sagittis dui', 2, 46, 'dui maecenas', 'libero nullam', 'sem', 'nunc nisl', 107, 'vitae', 2),
-    ('Aquilegia desolatica S.L. Welsh & N.D. Atwood', 'Desolation Columbine', 'curae nulla', 'integer tincidunt', 'iaculis congue', 17, 'vel', 3, 36, 'blandit', 'in', 'etiam pretium', 'donec', 297, 'id ligula', 2),
-    ('Symphyotrichum puniceum (L.) Á. Löve & D. Löve var. scabricaule (Shinners) G.L. Nesom', 'Purplestem Aster', 'morbi non', 'eget', 'diam', 37, 'proin interdum', 4, 24, 'blandit', 'vestibulum', 'augue', 'non sodales', 282, 'convallis nunc', 1),
-    ('Sclerochloa dura (L.) P. Beauv.', 'Common Hardgrass', 'curae nulla', 'interdum eu', 'morbi', 45, 'felis sed', 4, 20, 'ultrices vel', 'consequat lectus', 'ut', 'turpis', 270, 'diam in', 1),
-    ('Allium cernuum Roth var. neomexicanum (Rydb.) J.F. Macbr.', 'New Mexican Nodding Onion', 'ac consequat', 'etiam justo', 'pellentesque', 26, 'morbi', 5, 31, 'vel nulla', 'libero nullam', 'nibh', 'in faucibus', 335, 'integer ac', 2),
-    ('Collema undulatum Laurer ex Flotow', 'Undulate Jelly Lichen', 'aliquam non', 'turpis', 'auctor', 1, 'in', 3, 15, 'sapien', 'nibh in', 'amet', 'tellus semper', 11, 'libero', 2),
-    ('Apodanthera undulata A. Gray', 'Melon Loco', 'nulla eget', 'dis parturient', 'mattis', 6, 'platea', 2, 19, 'ridiculus', 'donec ut', 'consectetuer eget', 'felis', 350, 'condimentum curabitur', 2),
-    ('Arthropodium cirrhatum (G. Forst.) R. Br.', 'Rock-lily', 'venenatis tristique', 'ac', 'cum sociis', 48, 'molestie sed', 1, 33, 'curabitur', 'pellentesque', 'magnis', 'vestibulum velit', 102, 'venenatis tristique', 1),
-    ('Galactia microphylla (Chapm.) H.J. Rogers', 'Littleleaf Milkpea', 'vestibulum', 'vulputate elementum', 'quis libero', 19, 'volutpat', 5, 15, 'volutpat in', 'consequat', 'ante nulla', 'nibh', 271, 'consectetuer', 1),
-    ('Enceliopsis covillei (A. Nelson) S.F. Blake', 'Panamint Daisy', 'potenti cras', 'nisi', 'amet', 5, 'sit', 4, 32, 'lorem quisque', 'eu massa', 'sed', 'convallis nulla', 84, 'tempus vel', 1),
-    ('Pyrenopsis compacta Willey', 'Compact Pyrenopsis Lichen', 'in', 'pellentesque viverra', 'sit', 35, 'sem fusce', 3, 1, 'quis', 'elementum', 'ut volutpat', 'molestie', 63, 'nibh fusce', 2),
-    ('Setaria arizonica Rominger', 'Arizona Bristlegrass', 'vel', 'interdum in', 'dolor', 14, 'id', 2, 36, 'vel', 'vestibulum ac', 'pulvinar', 'proin risus', 314, 'rhoncus mauris', 1),
-    ('Lathyrus L.', 'Pea', 'tortor sollicitudin', 'fusce congue', 'faucibus orci', 36, 'phasellus in', 1, 32, 'orci', 'lectus pellentesque', 'congue elementum', 'quis augue', 337, 'cubilia curae', 1),
-    ('Crocidium Hook.', 'Spring-gold', 'nulla', 'est', 'sit amet', 25, 'lacinia eget', 1, 13, 'ut massa', 'sapien arcu', 'in', 'pellentesque', 40, 'nulla ultrices', 1),
-    ('Physaria floribunda Rydb. var. osterhoutii (Payson) Rollins', 'Pointtip Twinpod', 'pulvinar sed', 'convallis tortor', 'at nulla', 7, 'velit', 4, 25, 'molestie', 'ante', 'rutrum neque', 'in', 306, 'ultrices aliquet', 1),
-    ('Scleropodium julaceum E. Lawton', 'Scleropodium Moss', 'etiam', 'feugiat', 'at velit', 6, 'nunc', 1, 16, 'placerat', 'platea', 'pellentesque', 'nec nisi', 28, 'nulla tempus', 2);
+    ('Phyllostegia parviflora (Gaudich.) Benth.', 'Smallflower Phyllostegia', 'pulvinar', 'nunc viverra', 'sed magna', 40, 'ut at', 4, 18, 'quis', 'aliquet ultrices', 'ac', 'tellus', 301, 'nunc', 2, 'sed vestibulum', 'Maroon', 'Pink'),
+    ('Astragalus pardalinus (Rydb.) Barneby', 'Panther Milkvetch', 'adipiscing elit', 'congue', 'vel ipsum', 39, 'ante', 3, 38, 'erat', 'quam', 'nullam', 'ultricies', 79, 'aliquam lacus', 1, 'adipiscing elit', 'Indigo', 'Puce'),
+    ('Draba cinerea M.F. Adams', 'Grayleaf Draba', 'pede posuere', 'proin interdum', 'ante vel', 14, 'porttitor lacus', 1, 11, 'amet', 'nec sem', 'dapibus at', 'ligula', 362, 'tincidunt eget', 2, 'eget', 'Pink', 'Goldenrod'),
+    ('Festuca heterophylla Lam.', 'Variousleaf Fescue', 'neque', 'volutpat', 'vel lectus', 36, 'sagittis', 5, 29, 'nibh', 'morbi vel', 'in', 'ligula', 29, 'sit', 2, 'ipsum dolor', 'Red', 'Aquamarine'),
+    ('Bacidia scopulicola (Nyl.) A.L. Sm.', 'Dotted Lichen', 'vel enim', 'tempor', 'at', 23, 'sagittis dui', 2, 46, 'dui maecenas', 'libero nullam', 'sem', 'nunc nisl', 107, 'vitae', 2, 'amet', 'Red', 'Khaki'),
+    ('Aquilegia desolatica S.L. Welsh & N.D. Atwood', 'Desolation Columbine', 'curae nulla', 'integer tincidunt', 'iaculis congue', 17, 'vel', 3, 36, 'blandit', 'in', 'etiam pretium', 'donec', 297, 'id ligula', 2, 'lucus', 'Teal', 'Violet'),
+    ('Symphyotrichum puniceum (L.) Á. Löve & D. Löve var. scabricaule (Shinners) G.L. Nesom', 'Purplestem Aster', 'morbi non', 'eget', 'diam', 37, 'proin interdum', 4, 24, 'blandit', 'vestibulum', 'augue', 'non sodales', 282, 'convallis nunc', 1, 'nulla ac', 'Pink', 'Indigo'),
+    ('Sclerochloa dura (L.) P. Beauv.', 'Common Hardgrass', 'curae nulla', 'interdum eu', 'morbi', 45, 'felis sed', 4, 20, 'ultrices vel', 'consequat lectus', 'ut', 'turpis', 270, 'diam in', 1, 'odio', 'Red', 'Aquamarine'),
+    ('Allium cernuum Roth var. neomexicanum (Rydb.) J.F. Macbr.', 'New Mexican Nodding Onion', 'ac consequat', 'etiam justo', 'pellentesque', 26, 'morbi', 5, 31, 'vel nulla', 'libero nullam', 'nibh', 'in faucibus', 335, 'integer ac', 2, 'consecteteur', 'Yellow', 'Yellow'),
+    ('Collema undulatum Laurer ex Flotow', 'Undulate Jelly Lichen', 'aliquam non', 'turpis', 'auctor', 1, 'in', 3, 15, 'sapien', 'nibh in', 'amet', 'tellus semper', 11, 'libero', 2, 'consequat', 'Yellow', 'Indigo'),
+    ('Apodanthera undulata A. Gray', 'Melon Loco', 'nulla eget', 'dis parturient', 'mattis', 6, 'platea', 2, 19, 'ridiculus', 'donec ut', 'consectetuer eget', 'felis', 350, 'condimentum curabitur', 2, 'eu', 'Blue', 'Goldenrod'),
+    ('Arthropodium cirrhatum (G. Forst.) R. Br.', 'Rock-lily', 'venenatis tristique', 'ac', 'cum sociis', 48, 'molestie sed', 1, 33, 'curabitur', 'pellentesque', 'magnis', 'vestibulum velit', 102, 'venenatis tristique', 1, 'lacinia', 'Mauv', 'Turquoise'),
+    ('Galactia microphylla (Chapm.) H.J. Rogers', 'Littleleaf Milkpea', 'vestibulum', 'vulputate elementum', 'quis libero', 19, 'volutpat', 5, 15, 'volutpat in', 'consequat', 'ante nulla', 'nibh', 271, 'consectetuer', 1, 'voluptat dui', 'Green', 'Green'),
+    ('Enceliopsis covillei (A. Nelson) S.F. Blake', 'Panamint Daisy', 'potenti cras', 'nisi', 'amet', 5, 'sit', 4, 32, 'lorem quisque', 'eu massa', 'sed', 'convallis nulla', 84, 'tempus vel', 1, 'risus', 'Orange', 'Violet'),
+    ('Pyrenopsis compacta Willey', 'Compact Pyrenopsis Lichen', 'in', 'pellentesque viverra', 'sit', 35, 'sem fusce', 3, 1, 'quis', 'elementum', 'ut volutpat', 'molestie', 63, 'nibh fusce', 2),'orci', 'Teal', 'Purple',
+    ('Setaria arizonica Rominger', 'Arizona Bristlegrass', 'vel', 'interdum in', 'dolor', 14, 'id', 2, 36, 'vel', 'vestibulum ac', 'pulvinar', 'proin risus', 314, 'rhoncus mauris', 1, 'rhoncus', 'Purple', 'Orange'),
+    ('Lathyrus L.', 'Pea', 'tortor sollicitudin', 'fusce congue', 'faucibus orci', 36, 'phasellus in', 1, 32, 'orci', 'lectus pellentesque', 'congue elementum', 'quis augue', 337, 'cubilia curae', 1, 'pharetra', 'Purple', 'Yellow'),
+    ('Crocidium Hook.', 'Spring-gold', 'nulla', 'est', 'sit amet', 25, 'lacinia eget', 1, 13, 'ut massa', 'sapien arcu', 'in', 'pellentesque', 40, 'nulla ultrices', 1, 'neque', 'Puce', 'Crimson'),
+    ('Physaria floribunda Rydb. var. osterhoutii (Payson) Rollins', 'Pointtip Twinpod', 'pulvinar sed', 'convallis tortor', 'at nulla', 7, 'velit', 4, 25, 'molestie', 'ante', 'rutrum neque', 'in', 306, 'ultrices aliquet', 1, 'sapien', 'Puce', 'Orange'),
+    ('Scleropodium julaceum E. Lawton', 'Scleropodium Moss', 'etiam', 'feugiat', 'at velit', 6, 'nunc', 1, 16, 'placerat', 'platea', 'pellentesque', 'nec nisi', 28, 'nulla tempus', 2, 'odio', 'Red', );
 
 
 INSERT INTO enroot_orders (plant_id, user_id, maintenance_needed, frequency, details) 

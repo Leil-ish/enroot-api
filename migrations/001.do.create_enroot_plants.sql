@@ -15,4 +15,7 @@ CREATE TABLE enroot_plants (
     drought_tolerance TEXT,
     frost_free_days_minimum FLOAT,
     moisture_use TEXT
+    seedling_vigor TEXT
+    flower_color TEXT
+    foliage_color TEXT
 );
