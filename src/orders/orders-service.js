@@ -11,7 +11,7 @@ const OrdersService = {
       'bib_order.user_id',
       'bib_order.maintenance_needed',
       'bib_order.modified',
-      'bib_order.content',
+      'bib_order.details',
     )
     .groupBy('bib_order.id')
   },
@@ -22,7 +22,8 @@ const OrdersService = {
     .select(
       'bib_order.id',
       'bib_order.maintenance_needed',
-      'bib_order.content',
+      'bib_order.modified',
+      'bib_order.details',
     )
     .where('bib_order.id', id)
   },
@@ -33,7 +34,7 @@ const OrdersService = {
       plant_id: order.plant_id,
       user_id: order.user_id,
       maintenance_needed: xss(order.maintenance_needed),
-      content: xss(order.content),
+      details: xss(order.details),
       modified: new Date(order.modified),
     }
   }

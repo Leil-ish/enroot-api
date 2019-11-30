@@ -27,12 +27,12 @@ VALUES
     ('Arthropodium cirrhatum (G. Forst.) R. Br.', 'Rock-lily', 'venenatis tristique', 'ac', 'cum sociis', 48, 'molestie sed', 1, 33, 'curabitur', 'pellentesque', 'magnis', 'vestibulum velit', 102, 'venenatis tristique', 1, 'lacinia', 'Mauv', 'Turquoise'),
     ('Galactia microphylla (Chapm.) H.J. Rogers', 'Littleleaf Milkpea', 'vestibulum', 'vulputate elementum', 'quis libero', 19, 'volutpat', 5, 15, 'volutpat in', 'consequat', 'ante nulla', 'nibh', 271, 'consectetuer', 1, 'voluptat dui', 'Green', 'Green'),
     ('Enceliopsis covillei (A. Nelson) S.F. Blake', 'Panamint Daisy', 'potenti cras', 'nisi', 'amet', 5, 'sit', 4, 32, 'lorem quisque', 'eu massa', 'sed', 'convallis nulla', 84, 'tempus vel', 1, 'risus', 'Orange', 'Violet'),
-    ('Pyrenopsis compacta Willey', 'Compact Pyrenopsis Lichen', 'in', 'pellentesque viverra', 'sit', 35, 'sem fusce', 3, 1, 'quis', 'elementum', 'ut volutpat', 'molestie', 63, 'nibh fusce', 2),'orci', 'Teal', 'Purple',
+    ('Pyrenopsis compacta Willey', 'Compact Pyrenopsis Lichen', 'in', 'pellentesque viverra', 'sit', 35, 'sem fusce', 3, 1, 'quis', 'elementum', 'ut volutpat', 'molestie', 63, 'nibh fusce', 2, 'orci', 'Teal', 'Purple'),
     ('Setaria arizonica Rominger', 'Arizona Bristlegrass', 'vel', 'interdum in', 'dolor', 14, 'id', 2, 36, 'vel', 'vestibulum ac', 'pulvinar', 'proin risus', 314, 'rhoncus mauris', 1, 'rhoncus', 'Purple', 'Orange'),
     ('Lathyrus L.', 'Pea', 'tortor sollicitudin', 'fusce congue', 'faucibus orci', 36, 'phasellus in', 1, 32, 'orci', 'lectus pellentesque', 'congue elementum', 'quis augue', 337, 'cubilia curae', 1, 'pharetra', 'Purple', 'Yellow'),
     ('Crocidium Hook.', 'Spring-gold', 'nulla', 'est', 'sit amet', 25, 'lacinia eget', 1, 13, 'ut massa', 'sapien arcu', 'in', 'pellentesque', 40, 'nulla ultrices', 1, 'neque', 'Puce', 'Crimson'),
     ('Physaria floribunda Rydb. var. osterhoutii (Payson) Rollins', 'Pointtip Twinpod', 'pulvinar sed', 'convallis tortor', 'at nulla', 7, 'velit', 4, 25, 'molestie', 'ante', 'rutrum neque', 'in', 306, 'ultrices aliquet', 1, 'sapien', 'Puce', 'Orange'),
-    ('Scleropodium julaceum E. Lawton', 'Scleropodium Moss', 'etiam', 'feugiat', 'at velit', 6, 'nunc', 1, 16, 'placerat', 'platea', 'pellentesque', 'nec nisi', 28, 'nulla tempus', 2, 'odio', 'Red', );
+    ('Scleropodium julaceum E. Lawton', 'Scleropodium Moss', 'etiam', 'feugiat', 'at velit', 6, 'nunc', 1, 16, 'placerat', 'platea', 'pellentesque', 'nec nisi', 28, 'nulla tempus', 2, 'odio', 'Red', 'Blue');
 
 
 INSERT INTO enroot_orders (plant_id, user_id, maintenance_needed, frequency, details) 
