@@ -25,6 +25,7 @@ const PlantsService = {
         'enroot_plant.seedling_vigor',
         'enroot_plant.flower_color',
         'enroot_plant.foliage_color',
+        'enroot_plant.user_id',
         )
         .groupBy('enroot_plant.id')
       },

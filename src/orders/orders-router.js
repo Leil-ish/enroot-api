@@ -7,6 +7,7 @@ const jsonBodyParser = express.json()
 
 ordersRouter
   .route('/')
+  .all(requireAuth)
   .get((req, res, next) => {
     OrdersService.getAllOrders(req.app.get('db'))
       .then(orders => {

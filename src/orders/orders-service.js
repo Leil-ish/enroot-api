@@ -4,28 +4,28 @@ const OrdersService = {
 
   getAllOrders(db) {
     return db
-    .from('enroot_orders AS bib_order')
+    .from('enroot_orders AS enroot_order')
     .select(
-      'bib_order.id',
-      'bib_order.plant_id',
-      'bib_order.user_id',
-      'bib_order.maintenance_needed',
-      'bib_order.modified',
-      'bib_order.details',
+      'enroot_order.id',
+      'enroot_order.plant_id',
+      'enroot_order.user_id',
+      'enroot_order.maintenance_needed',
+      'enroot_order.modified',
+      'enroot_order.details',
     )
-    .groupBy('bib_order.id')
+    .groupBy('enroot_order.id')
   },
 
   getOrderById(db, id) {
     return db
-    .from('enroot_orders AS bib_order')
+    .from('enroot_orders AS enroot_order')
     .select(
-      'bib_order.id',
-      'bib_order.maintenance_needed',
-      'bib_order.modified',
-      'bib_order.details',
+      'enroot_order.id',
+      'enroot_order.maintenance_needed',
+      'enroot_order.modified',
+      'enroot_order.details',
     )
-    .where('bib_order.id', id)
+    .where('enroot_order.id', id)
   },
 
   serializeOrder(order) {

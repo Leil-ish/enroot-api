@@ -8,6 +8,7 @@ const plantsRouter = require('./plants/plants-router')
 const ordersRouter = require('./orders/orders-router')
 const authRouter = require('./auth/auth-router')
 const usersRouter = require('./users/users-router')
+const trefleRouter = require('./trefle/trefle-router')
 
 const app = express()
 
@@ -23,6 +24,7 @@ app.use('/api/orders', ordersRouter)
 app.use('/api/garden', plantsRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
+app.use('/api/trefle', trefleRouter)
 
 app.use(function errorHandler(error, req, res, next) {
     let response
