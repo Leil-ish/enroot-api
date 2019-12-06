@@ -20,6 +20,8 @@ app.use(cors())
 
 app.use(helmet())
 
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/api/orders', ordersRouter)
 app.use('/api/garden', plantsRouter)
 app.use('/api/auth', authRouter)
