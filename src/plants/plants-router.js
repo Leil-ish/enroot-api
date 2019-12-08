@@ -4,6 +4,8 @@ const PlantsService = require('./plants-service')
 const {requireAuth} = require('../middleware/jwt-auth')
 const jsonBodyParser = express.json()
 const plantsRouter = express.Router()
+const request =  require('request') 
+
 
 plantsRouter
   .route('/')
@@ -43,6 +45,35 @@ plantsRouter
           .json(PlantsService.serializePlant(plant))
       })
       .catch(next)
+    })
+    
+let searchTerm;
+
+plantsRouter
+    .route('/trefle')
+    .get((req, res, next) => {
+      const baseUrl = 'https://trefle.io/api/species?common_name=';	
+      const token = `&token=${process.env.BEARER_TOKEN}`;
+
+      const userSearch = (baseUrl, token, searchTerm) => {
+
+      let newUrl = baseUrl + searchTerm + token;
+      return newUrl;
+      };	
+
+      const apiUrl = userSearch(baseUrl, token, searchTerm);
+
+      fetch(apiUrl)
+        .then(plants => {
+          res.json(plants.map(TrefleService.serializePlant))
+        })
+        .catch(next)
+    })
+
+plantsRouter
+    .route('/trefle-searchterm')
+    .post((req, res) => {
+      searchTerm = req.body.searchTerm;
     })
 
 plantsRouter

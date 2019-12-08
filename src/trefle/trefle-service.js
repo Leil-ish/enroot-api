@@ -29,7 +29,7 @@ const TrefleService = {
       },
 
     getById(requestToApi, id) {
-        return ApiService.getAllApiPlants(requestToApi)
+        return TrefleService.getAllApiPlants(requestToApi)
           .where('api_plants.id', id)
           .first()
       },
