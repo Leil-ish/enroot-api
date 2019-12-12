@@ -1,10 +1,11 @@
 const express = require('express')
 const path = require('path')
 const PlantsService = require('./plants-service')
+const TrefleService = require('../trefle/trefle-service')
 const {requireAuth} = require('../middleware/jwt-auth')
 const jsonBodyParser = express.json()
 const plantsRouter = express.Router()
-const request =  require('request') 
+const fetch =  require('node-fetch') 
 
 
 plantsRouter
@@ -64,14 +65,15 @@ plantsRouter
       const apiUrl = userSearch(baseUrl, token, searchTerm);
 
       fetch(apiUrl)
-        .then(plants => {
-          res.json(plants.map(TrefleService.serializePlant))
+        .then(res => res.json())
+        .then(data => {
+          res.send({ data });
         })
         .catch(next)
     })
 
 plantsRouter
-    .route('/trefle-searchterm')
+    .route('/find-plant')
     .post((req, res) => {
       searchTerm = req.body.searchTerm;
     })

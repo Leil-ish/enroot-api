@@ -28,12 +28,6 @@ const TrefleService = {
         .groupBy('api_plants.id')
       },
 
-    getById(requestToApi, id) {
-        return TrefleService.getAllApiPlants(requestToApi)
-          .where('api_plants.id', id)
-          .first()
-      },
-
       serializeApiPlant(api_plant) {
         return {
           id: api_plant.id,
