@@ -3,7 +3,6 @@ const path = require('path')
 const OrdersService = require('./orders-service')
 const { requireAuth } = require('../middleware/jwt-auth')
 const ordersRouter = express.Router()
-const jsonBodyParser = express.json()
 
 ordersRouter
   .route('/')

@@ -42,8 +42,8 @@ const PlantsService = {
       .select(
         'enroot_order.id',
         'enroot_order.maintenance_needed',
-        'enroot_order.frequency',
         'enroot_order.details',
+        'enroot_order.frequency',
       )
       .where('enroot_order.id', id)
     },
@@ -55,8 +55,8 @@ const PlantsService = {
         .select(
             'enroot_order.id',
             'enroot_order.maintenance_needed',
-            'enroot_order.frequency',
             'enroot_order.details',
+            'enroot_order.frequency',
         )
         .where('enroot_order.plant_id', plant_id)
         .groupBy('enroot_order.id')
@@ -147,7 +147,7 @@ const PlantsService = {
         maintenance_needed: order.maintenance_needed,
         modified: new Date(order.modified),
         frequency: order.frequency,
-        details: xss(order.content),
+        details: xss(order.details),
       }
     },
   }

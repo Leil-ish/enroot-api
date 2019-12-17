@@ -10,6 +10,7 @@ const OrdersService = {
       'enroot_order.plant_id',
       'enroot_order.user_id',
       'enroot_order.maintenance_needed',
+      'enroot_order.frequency',
       'enroot_order.modified',
       'enroot_order.details',
     )
@@ -23,6 +24,7 @@ const OrdersService = {
       'enroot_order.id',
       'enroot_order.maintenance_needed',
       'enroot_order.modified',
+      'enroot_order.frequency',
       'enroot_order.details',
     )
     .where('enroot_order.id', id)
@@ -34,6 +36,7 @@ const OrdersService = {
       plant_id: order.plant_id,
       user_id: order.user_id,
       maintenance_needed: xss(order.maintenance_needed),
+      frequency: order.frequency,
       details: xss(order.details),
       modified: new Date(order.modified),
     }

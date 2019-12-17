@@ -1,9 +1,12 @@
 const express = require('express')
 const path = require('path')
 const PlantsService = require('./plants-service')
+// const TrefleService = require('../trefle/trefle-service')
 const {requireAuth} = require('../middleware/jwt-auth')
 const jsonBodyParser = express.json()
 const plantsRouter = express.Router()
+const fetch =  require('node-fetch') 
+
 
 plantsRouter
   .route('/')
@@ -44,6 +47,36 @@ plantsRouter
       })
       .catch(next)
     })
+    
+let searchTerm;
+
+plantsRouter
+    .route('/trefle')
+    .get(requireAuth, (req, res, next) => {
+      const baseUrl = 'https://trefle.io/api/species?common_name=';	
+      const token = `&token=${process.env.BEARER_TOKEN}`;
+
+      const userSearch = (baseUrl, token, searchTerm) => {
+
+      let newUrl = baseUrl + searchTerm + token;
+      return newUrl;
+      };	
+
+      const apiUrl = userSearch(baseUrl, token, searchTerm);
+
+      fetch(apiUrl)
+        .then(res => res.json())
+        .then(data => {
+          res.send({ data });
+        })
+        .catch(next)
+    })
+
+plantsRouter
+    .route('/find-plant')
+    .post(requireAuth, (req, res) => {
+      searchTerm = req.body.searchTerm;
+    })
 
 plantsRouter
     .route('/add-plant')
@@ -55,8 +88,8 @@ plantsRouter
         .catch(next)
     })
     .post(requireAuth, jsonBodyParser, (req, res, next) => {
-      const {common_name, lifespan, temperature_minimum, resprout_ability, duration} = req.body
-      const newPlant = {common_name, lifespan, temperature_minimum, resprout_ability, duration}
+      const {common_name} = req.body
+      const newPlant = {common_name}
   
       for (const [key, value] of Object.entries(newPlant))
         if (value == null)
@@ -146,12 +179,17 @@ plantsRouter
   .all(requireAuth)
   .all(checkPlantExists)
   .patch(requireAuth, jsonBodyParser, (req, res, next) => {
-    const {scientific_name, growth_rate, growth_period, shade_tolerance, precipitation_maximum, precipitation_minimum, family_common_name, drought_tolerance, frost_free_days_minimum, moisture_use, user_id, seedling_vigor, flower_color, foliage_color} = req.body
-    const plantToUpdate = {scientific_name, growth_rate, growth_period, shade_tolerance, precipitation_maximum, precipitation_minimum, family_common_name, drought_tolerance, frost_free_days_minimum, moisture_use, user_id, seedling_vigor, flower_color, foliage_color}
+    const {plantId, scientific_name, lifespan, growth_rate, growth_period, 
+      temperature_minimum, shade_tolerance, precipitation_minimum, precipitation_maximum, 
+      resprout_ability, family_common_name, duration, drought_tolerance, frost_free_days_minimum, 
+      moisture_use, seedling_vigor, flower_color, foliage_color} = req.body
+    const plantToUpdate = {plantId, scientific_name, lifespan, growth_rate, growth_period, 
+      temperature_minimum, shade_tolerance, precipitation_minimum, precipitation_maximum, 
+      resprout_ability, family_common_name, duration, drought_tolerance, frost_free_days_minimum, 
+      moisture_use, seedling_vigor, flower_color, foliage_color}
 
     const numberOfValues = Object.values(plantToUpdate).filter(Boolean).length
     if (numberOfValues === 0) {
-      logger.error(`Invalid update without required fields`)
       return res.status(400).json({
         error: {
           message: `Request body must contain at least one field to update.`

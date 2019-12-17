@@ -20,11 +20,12 @@ app.use(cors())
 
 app.use(helmet())
 
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/api/orders', ordersRouter)
 app.use('/api/garden', plantsRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)
-app.use('/api/trefle', trefleRouter)
 
 app.use(function errorHandler(error, req, res, next) {
     let response
