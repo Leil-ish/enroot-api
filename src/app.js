@@ -5,7 +5,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 const {NODE_ENV} = require('./config')
 const plantsRouter = require('./plants/plants-router')
-const ordersRouter = require('./orders/orders-router')
+const tasksRouter = require('./tasks/tasks-router')
 const authRouter = require('./auth/auth-router')
 const usersRouter = require('./users/users-router')
 const trefleRouter = require('./trefle/trefle-router')
@@ -22,7 +22,7 @@ app.use(helmet())
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/orders', ordersRouter)
+app.use('/api/tasks', tasksRouter)
 app.use('/api/garden', plantsRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/users', usersRouter)

@@ -67,7 +67,7 @@ function makePlantsArray(users) {
     ]
 }
 
-function makeOrdersArray(users, plants) {
+function makeTasksArray(users, plants) {
   return [
         {id:1,plant_id:plants[7].id,user_id:users[1].id,maintenance_needed:'pellentesque viverra pede ac diam cras pellentesque volutpat',frequency:'neque',details:'elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt'},
         {id:2,plant_id:plants[9].id,user_id:users[0].id,maintenance_needed:'at turpis donec posuere metus vitae ipsum aliquam non mauris morbi non lectus aliquam sit amet diam',frequency:'eget',details:'nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum'},
@@ -114,18 +114,18 @@ function makeExpectedPlant(plant) {
     }
   }
   
-  function makeExpectedPlantOrders(plantId, orders) {
-    const expectedOrders = orders
-      .filter(order => order.plant_id === plantId)
+  function makeExpectedPlantTasks(plantId, tasks) {
+    const expectedTasks = tasks
+      .filter(task => task.plant_id === plantId)
   
-    return expectedOrders.map(order => {
+    return expectedTasks.map(task => {
       return {
-        id: order.id,
-        plant_id: order.plant_id,
-        modified: order.modifed.toISOString(),
-        maintenance_needed: order.maintenance_needed,
-        frequency: order.frequency,
-        details: order.details,
+        id: task.id,
+        plant_id: task.plant_id,
+        modified: task.modifed.toISOString(),
+        maintenance_needed: task.maintenance_needed,
+        frequency: task.frequency,
+        details: task.details,
       }
     })
   }
@@ -164,8 +164,8 @@ function makeExpectedPlant(plant) {
   function makePlantsFixtures() {
     const testUsers = makeUsersArray()
     const testPlants = makePlantsArray(testUsers)
-    const testOrders = makeOrdersArray(testUsers, testPlants)
-    return {testUsers, testPlants, testOrders}
+    const testTasks = makeTasksArray(testUsers, testPlants)
+    return {testUsers, testPlants, testTasks}
   }
   
   function cleanTables(db) {
@@ -174,17 +174,17 @@ function makeExpectedPlant(plant) {
         `TRUNCATE
           enroot_plants,
           enroot_users,
-          enroot_orders
+          enroot_tasks
         `
       )
       .then(() =>
         Promise.all([
           trx.raw(`ALTER SEQUENCE enroot_plants_id_seq minvalue 0 START WITH 1`),
           trx.raw(`ALTER SEQUENCE enroot_users_id_seq minvalue 0 START WITH 1`),
-          trx.raw(`ALTER SEQUENCE enroot_orders_id_seq minvalue 0 START WITH 1`),
+          trx.raw(`ALTER SEQUENCE enroot_tasks_id_seq minvalue 0 START WITH 1`),
           trx.raw(`SELECT setval('enroot_plants_id_seq', 0)`),
           trx.raw(`SELECT setval('enroot_users_id_seq', 0)`),
-          trx.raw(`SELECT setval('enroot_orders_id_seq', 0)`),
+          trx.raw(`SELECT setval('enroot_tasks_id_seq', 0)`),
         ])
       )
     )
@@ -204,7 +204,7 @@ function makeExpectedPlant(plant) {
       )
   }
   
-  function seedPlantsTables(db, users, plants, orders=[]) {
+  function seedPlantsTables(db, users, plants, tasks=[]) {
     return db.transaction(async trx => {
       await seedUsers(trx, users)
       await trx.into('enroot_plants').insert(plants)
@@ -212,11 +212,11 @@ function makeExpectedPlant(plant) {
         `SELECT setval('enroot_plants_id_seq', ?)`,
         [plants[plants.length - 1].id],
       )
-      if (orders.length) {
-        await trx.into('enroot_orders').insert(orders)
+      if (tasks.length) {
+        await trx.into('enroot_tasks').insert(tasks)
         await trx.raw(
-          `SELECT setval('enroot_orders_id_seq', ?)`,
-          [orders[orders.length - 1].id],
+          `SELECT setval('enroot_tasks_id_seq', ?)`,
+          [tasks[tasks.length - 1].id],
         )
       }
     })
@@ -243,9 +243,9 @@ module.exports = {
   makeUsersArray,
   makePlantsArray,
   makeExpectedPlant,
-  makeExpectedPlantOrders,
+  makeExpectedPlantTasks,
   makeMaliciousPlant,
-  makeOrdersArray,
+  makeTasksArray,
 
   makePlantsFixtures,
   cleanTables,

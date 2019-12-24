@@ -2,7 +2,7 @@ BEGIN;
 
 TRUNCATE
   enroot_plants,
-  enroot_orders,
+  enroot_tasks,
   enroot_users
   RESTART IDENTITY CASCADE;
 
@@ -35,7 +35,7 @@ VALUES
     ('Scleropodium julaceum E. Lawton', 'Scleropodium Moss', 'etiam', 'feugiat', 'at velit', 6, 'nunc', 1, 16, 'placerat', 'platea', 'pellentesque', 'nec nisi', 28, 'nulla tempus', 2, 'odio', 'Red', 'Blue');
 
 
-INSERT INTO enroot_orders (plant_id, user_id, maintenance_needed, frequency, details) 
+INSERT INTO enroot_tasks (plant_id, user_id, maintenance_needed, frequency, details) 
 VALUES
     (9, 2, 'fusce consequat nulla nisl nunc nisl', 'tincidunt eget', 'pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum'),
     (17, 1, 'pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia', 'mauris morbi', 'pede lobortis ligula sit amet eleifend pede libero quis orci nullam molestie'),

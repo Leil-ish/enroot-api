@@ -131,45 +131,45 @@ plantsRouter
   })
 
 plantsRouter
-  .route('/:plant_id/orders/')
+  .route('/:plant_id/tasks/')
   .all(requireAuth)
   .all(checkPlantExists)
   .get((req, res, next) => {
-    PlantsService.getOrdersForPlant(
+    PlantsService.getTasksForPlant(
       req.app.get('db'),
       req.params.plant_id
     )
-      .then(orders => {
-        res.json(orders.map(PlantsService.serializePlantOrder))
+      .then(tasks => {
+        res.json(tasks.map(PlantsService.serializePlantTask))
       })
       .catch(next)
   })
 
 plantsRouter
-  .route('/:plant_id/add-order/')
+  .route('/:plant_id/add-task/')
   .all(requireAuth)
   .all(checkPlantExists)
   .post(requireAuth, jsonBodyParser, (req, res, next) => {
     const {plant_id, maintenance_needed, frequency, details} = req.body
-    const newOrder = {plant_id, maintenance_needed, frequency, details}
+    const newTask = {plant_id, maintenance_needed, frequency, details}
 
-    for (const [key, value] of Object.entries(newOrder))
+    for (const [key, value] of Object.entries(newTask))
       if (value == null)
         return res.status(400).json({
           error: `Missing '${key}' in request body`
         })
 
-    newOrder.user_id = req.user.id
+    newTask.user_id = req.user.id
 
-    PlantsService.insertOrder(
+    PlantsService.insertTask(
       req.app.get('db'),
-      newOrder
+      newTask
     )
-      .then(order => {
+      .then(task => {
         res
           .status(201)
-          .location(path.posix.join(req.originalUrl, `/${order.plant_id}`))
-          .json(PlantsService.serializePlantOrder(order))
+          .location(path.posix.join(req.originalUrl, `/${task.plant_id}`))
+          .json(PlantsService.serializePlantTask(task))
       })
       .catch(next)
     })
@@ -209,28 +209,28 @@ plantsRouter
     })
 
   plantsRouter
-  .route('/:plant_id/orders/:order_id')
+  .route('/:plant_id/tasks/:task_id')
   .all(requireAuth)
-  .all(checkOrderExists)
+  .all(checkTaskExists)
   .get((req, res, next) => {
-    PlantsService.getOrderById(
+    PlantsService.getTaskById(
       req.app.get('db'),
-      req.params.order_id
+      req.params.task_id
     )
-      .then(orders => {
-        res.json(orders.map(PlantsService.serializePlantOrder))
+      .then(tasks => {
+        res.json(tasks.map(PlantsService.serializePlantTask))
       })
       .catch(next)
   })
 
   plantsRouter
-  .route('/:plant_id/orders/:order_id')
+  .route('/:plant_id/tasks/:task_id')
   .all(requireAuth)
-  .all(checkOrderExists)
+  .all(checkTaskExists)
   .delete((req, res, next) => {
-    PlantsService.deleteOrder(
+    PlantsService.deleteTask(
       req.app.get('db'),
-      req.params.order_id
+      req.params.task_id
     )
       .then(() => {
         res.status(204).end()
@@ -238,7 +238,7 @@ plantsRouter
       .catch(next)
   })
 
-//Confirm that plants and orders exist before they are acted upon
+//Confirm that plants and tasks exist before they are acted upon
 async function checkPlantExists(req, res, next) {
   try {
     const plant = await PlantsService.getById(
@@ -258,19 +258,19 @@ async function checkPlantExists(req, res, next) {
   }
 }
 
-async function checkOrderExists(req, res, next) {
+async function checkTaskExists(req, res, next) {
   try {
-    const order = await PlantsService.getOrderById(
+    const task = await PlantsService.getTaskById(
       req.app.get('db'),
-      req.params.order_id
+      req.params.task_id
     )
 
-    if (!order)
+    if (!task)
       return res.status(404).json({
-        error: `Order doesn't exist`
+        error: `Task doesn't exist`
       })
 
-    res.order = order
+    res.task = task
     next()
   } catch (error) {
     next(error)

@@ -36,39 +36,39 @@ const PlantsService = {
         .first()
     },
 
-    getOrderById(db, id) {
+    getTaskById(db, id) {
       return db
-      .from('enroot_orders AS enroot_order')
+      .from('enroot_tasks AS enroot_task')
       .select(
-        'enroot_order.id',
-        'enroot_order.maintenance_needed',
-        'enroot_order.details',
-        'enroot_order.frequency',
+        'enroot_task.id',
+        'enroot_task.maintenance_needed',
+        'enroot_task.details',
+        'enroot_task.frequency',
       )
-      .where('enroot_order.id', id)
+      .where('enroot_task.id', id)
     },
   
-    //Handing some orders stuff here because they're connected to particular plant IDs
-    getOrdersForPlant(db, plant_id) {
+    //Handing some tasks stuff here because they're connected to particular plant IDs
+    getTasksForPlant(db, plant_id) {
       return db
-        .from('enroot_orders AS enroot_order')
+        .from('enroot_tasks AS enroot_task')
         .select(
-            'enroot_order.id',
-            'enroot_order.maintenance_needed',
-            'enroot_order.details',
-            'enroot_order.frequency',
+            'enroot_task.id',
+            'enroot_task.maintenance_needed',
+            'enroot_task.details',
+            'enroot_task.frequency',
         )
-        .where('enroot_order.plant_id', plant_id)
-        .groupBy('enroot_order.id')
+        .where('enroot_task.plant_id', plant_id)
+        .groupBy('enroot_task.id')
     },
 
-    deleteOrder(db, id) {
+    deleteTask(db, id) {
       return db
-      .from('enroot_orders AS enroot_order')
+      .from('enroot_tasks AS enroot_task')
       .select(
-        'enroot_order.id',
+        'enroot_task.id',
       )
-      .where('enroot_order.id', id)
+      .where('enroot_task.id', id)
       .delete()
     },
 
@@ -82,14 +82,14 @@ const PlantsService = {
       .delete()
     },
 
-    insertOrder(db, newOrder) {
+    insertTask(db, newTask) {
       return db
-        .insert(newOrder)
-        .into('enroot_orders')
+        .insert(newTask)
+        .into('enroot_tasks')
         .returning('*')
-        .then(([order]) => order)
-        .then(order =>
-          PlantsService.getOrderById(db, order.plant_id)
+        .then(([task]) => task)
+        .then(task =>
+          PlantsService.getTaskById(db, task.plant_id)
         )
     },
 
@@ -139,15 +139,15 @@ const PlantsService = {
       }
     },
   
-    serializePlantOrder(order) {
+    serializePlantTask(task) {
       return {
-        order_id: order.id,
-        plant_id: order.plant_id,
-        user_id: order.user_id,
-        maintenance_needed: order.maintenance_needed,
-        modified: new Date(order.modified),
-        frequency: order.frequency,
-        details: xss(order.details),
+        task_id: task.id,
+        plant_id: task.plant_id,
+        user_id: task.user_id,
+        maintenance_needed: task.maintenance_needed,
+        modified: new Date(task.modified),
+        frequency: task.frequency,
+        details: xss(task.details),
       }
     },
   }

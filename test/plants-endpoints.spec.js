@@ -8,7 +8,7 @@ describe('Plants Endpoints', function() {
   const {
     testUsers,
     testPlants,
-    testOrders,
+    testTasks,
   } = helpers.makePlantsFixtures()
 
   before('make knex instance', () => {
@@ -40,7 +40,7 @@ describe('Plants Endpoints', function() {
           db,
           testUsers,
           testPlants,
-          testOrders,
+          testTasks,
         )
       )
 
@@ -49,7 +49,7 @@ describe('Plants Endpoints', function() {
           helpers.makeExpectedPlant(
             testUsers,
             testPlants,
-            testOrders,
+            testTasks,
           )
         )
         return supertest(app)
@@ -106,7 +106,7 @@ describe('Plants Endpoints', function() {
           db,
           testUsers,
           testPlants,
-          testOrders,
+          testTasks,
         )
       )
 
@@ -115,7 +115,7 @@ describe('Plants Endpoints', function() {
         const expectedPlant = helpers.makeExpectedPlant(
           testUsers,
           testPlants[plantId - 1],
-          testOrders,
+          testTasks,
         )
 
         return supertest(app)
@@ -153,7 +153,7 @@ describe('Plants Endpoints', function() {
     })
   })
 
-  describe(`GET /api/garden/:plant_id/orders`, () => {
+  describe(`GET /api/garden/:plant_id/tasks`, () => {
     context(`Given no plants`, () => {
       beforeEach(() =>
         helpers.seedUsers(db, testUsers)
@@ -162,32 +162,32 @@ describe('Plants Endpoints', function() {
       it(`responds with 404`, () => {
         const plantId = 123456
         return supertest(app)
-          .get(`/api/garden/${plantId}/orders`)
+          .get(`/api/garden/${plantId}/tasks`)
           .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
           .expect(404, { error: `Plant doesn't exist` })
       })
     })
 
-    context('Given there are orders for plant in the database', () => {
+    context('Given there are tasks for plant in the database', () => {
       beforeEach('insert plants', () =>
         helpers.seedPlantsTables(
           db,
           testUsers,
           testPlants,
-          testOrders,
+          testTasks,
         )
       )
 
-      it('responds with 200 and the specified orders', () => {
+      it('responds with 200 and the specified tasks', () => {
         const plantId = 1
-        const expectedOrders = helpers.makeExpectedPlantOrders(
-          testUsers, plantId, testOrders
+        const expectedTasks = helpers.makeExpectedPlantTasks(
+          testUsers, plantId, testTasks
         )
 
         return supertest(app)
-          .get(`/api/garden/${plantId}/orders`)
+          .get(`/api/garden/${plantId}/tasks`)
           .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
-          .expect(200, expectedOrders)
+          .expect(200, expectedTasks)
       })
     })
   })
