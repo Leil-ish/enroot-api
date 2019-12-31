@@ -8,7 +8,6 @@ const plantsRouter = require('./plants/plants-router')
 const tasksRouter = require('./tasks/tasks-router')
 const authRouter = require('./auth/auth-router')
 const usersRouter = require('./users/users-router')
-const trefleRouter = require('./trefle/trefle-router')
 
 const app = express()
 
