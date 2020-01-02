@@ -127,8 +127,8 @@ plantsRouter
   .all(requireAuth)
   .all(checkPlantExists)
   .post(requireAuth, jsonBodyParser, (req, res, next) => {
-    const {plant_id, maintenance_needed, frequency, details} = req.body
-    const newTask = {plant_id, maintenance_needed, frequency, details}
+    const {plant_id, plant_common_name, maintenance_needed, frequency, details} = req.body
+    const newTask = {plant_id, plant_common_name, maintenance_needed, frequency, details}
 
     for (const [key, value] of Object.entries(newTask))
       if (value == null)

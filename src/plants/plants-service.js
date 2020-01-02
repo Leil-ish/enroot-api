@@ -41,6 +41,7 @@ const PlantsService = {
       .from('enroot_tasks AS enroot_task')
       .select(
         'enroot_task.id',
+        'enroot_task.plant_common_name',
         'enroot_task.maintenance_needed',
         'enroot_task.details',
         'enroot_task.frequency',
@@ -54,6 +55,7 @@ const PlantsService = {
         .from('enroot_tasks AS enroot_task')
         .select(
             'enroot_task.id',
+            'enroot_task.plant_common_name',
             'enroot_task.maintenance_needed',
             'enroot_task.details',
             'enroot_task.frequency',
@@ -143,8 +145,9 @@ const PlantsService = {
       return {
         task_id: task.id,
         plant_id: task.plant_id,
+        plant_common_name: xss(task.plant_common_name),
         user_id: task.user_id,
-        maintenance_needed: task.maintenance_needed,
+        maintenance_needed: xss(task.maintenance_needed),
         modified: new Date(task.modified),
         frequency: task.frequency,
         details: xss(task.details),
