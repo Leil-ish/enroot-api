@@ -55,6 +55,6 @@ The API endpoints that are useful in using this app are:
 * <https://guarded-taiga-77278.herokuapp.com/api/garden/:plant_id/tasks> - gets tasks related to a particular plant
 * <https://guarded-taiga-77278.herokuapp.com/api/garden/:plant_id/:task_id> - gets a particular task related to a particular plant
 
-Endpoints that specify a particular resource can handle DELETE and GET requests. All other endpoints can handle GET and POST requests. All endpoints beyond the landing page require JWT authentication, most easily accomplished by registering at <https://leil-ish-enroot-app.now.sh/> and getting an auth token.
+Endpoints that specify a particular resource can handle DELETE and GET requests. All other endpoints can handle GET and POST requests. All endpoints beyond the landing page require JWT authentication, most easily accomplished by registering at <https://https://leilish-enroot-app.now.sh//> and getting an auth token.
 
-This project was created using React on the frontend and Node.js, Express, and PostgreSQL on the backend. If you like this repo, you can find its frontend companion at <https://github.com/Leil-ish/Enroot-client>!
+This project was created using React on the frontend and Node.js, Express, and PostgreSQL on the backend. If you like this repo, you can find its frontend companion at <https://github.com/leil-ish/enroot-client>!
