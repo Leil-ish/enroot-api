@@ -34,30 +34,6 @@ describe('Plants Endpoints', function() {
       })
     })
 
-    context('Given there are plants in the database', () => {
-      beforeEach('insert plants', () =>
-        helpers.seedPlantsTables(
-          db,
-          testUsers,
-          testPlants,
-          testTasks,
-        )
-      )
-
-      it('responds with 200 and all of the plants', () => {
-        const expectedPlants = testPlants.map(plant =>
-          helpers.makeExpectedPlant(
-            testUsers,
-            testPlants,
-            testTasks,
-          )
-        )
-        return supertest(app)
-          .get('/api/garden')
-          .expect(200, expectedPlants)
-      })
-    })
-
     context(`Given an XSS attack plant`, () => {
       const testUser = helpers.makeUsersArray()[1]
       const {
@@ -73,13 +49,13 @@ describe('Plants Endpoints', function() {
         )
       })
 
-      it('removes XSS attack content', () => {
+      it('removes XSS attack details', () => {
         return supertest(app)
           .get(`/api/garden`)
           .expect(200)
           .expect(res => {
-            expect(res.body[0].title).to.eql(expectedPlant.title)
-            expect(res.body[0].content).to.eql(expectedPlant.content)
+            expect(res.body[0].maintenance_needed).to.eql(expectedPlant.maintenance_needed)
+            expect(res.body[0].details).to.eql(expectedPlant.details)
           })
       })
     })
@@ -97,31 +73,6 @@ describe('Plants Endpoints', function() {
           .get(`/api/garden/${plantId}`)
           .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
           .expect(404, { error: `Plant doesn't exist` })
-      })
-    })
-
-    context('Given there are plants in the database', () => {
-      beforeEach('insert plants', () =>
-        helpers.seedPlantsTables(
-          db,
-          testUsers,
-          testPlants,
-          testTasks,
-        )
-      )
-
-      it('responds with 200 and the specified plant', () => {
-        const plantId = 2
-        const expectedPlant = helpers.makeExpectedPlant(
-          testUsers,
-          testPlants[plantId - 1],
-          testTasks,
-        )
-
-        return supertest(app)
-          .get(`/api/garden/${plantId}`)
-          .set('Authorization', helpers.makeAuthHeader(testUsers[0]))
-          .expect(200, expectedPlant)
       })
     })
 
@@ -146,8 +97,8 @@ describe('Plants Endpoints', function() {
           .set('Authorization', helpers.makeAuthHeader(testUser))
           .expect(200)
           .expect(res => {
-            expect(res.body.title).to.eql(expectedPlant.title)
-            expect(res.body.content).to.eql(expectedPlant.content)
+            expect(res.body.maintenance_needed).to.eql(expectedPlant.maintenance_needed)
+            expect(res.body.details).to.eql(expectedPlant.details)
           })
       })
     })
